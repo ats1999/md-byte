@@ -1,0 +1,8 @@
+.toastui-editor-contents h1,
+.toastui-editor-contents h2 {
+  border-bottom: 0px;
+}
+.toastui-editor-contents pre{
+  background-color: #232428;
+  color: white;
+}
