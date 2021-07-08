@@ -13,6 +13,7 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 // theme 
 //https://github.com/PrismJS/prism-themes/tree/master/themes
 import "prismjs/themes/prism-okaidia.css";
+import "katex/dist/katex.min.css";
 import "md-byte/src/toast.css";
 
 const App = () => {

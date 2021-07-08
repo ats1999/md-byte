@@ -6,3 +6,17 @@
   background-color: #232428;
   color: white;
 }
+.toastui-editor-contents, div[contenteditable]{
+  font-size: 17px;
+}
+
+.toastui-editor-contents pre{
+  overflow: auto;
+}
+.toastui-editor-contents pre code{
+  white-space: pre;
+}
+
+.toastui-editor-contents pre::-webkit-scrollbar {
+	width: 5px;
+}
