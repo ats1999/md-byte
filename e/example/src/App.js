@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { MdByteE, MdByteV } from 'md-byte';
+import MdByteE from 'md-byte';
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import "@toast-ui/editor/dist/toastui-editor-viewer.css";
@@ -14,19 +14,39 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 //https://github.com/PrismJS/prism-themes/tree/master/themes
 import "prismjs/themes/prism-okaidia.css";
 import "katex/dist/katex.min.css";
-import "md-byte/src/toast.css";
+import "md-byte/src/index.css";
 
+
+import "./index.css";
+
+/*
+function MdByteV({ initialValue, theme }) {
+  return <Viewer
+    initialValue={initialValue}
+    theme={theme}
+    widgetRules={widgetRules}
+    customHTMLRenderer={customHTMLRenderer}
+    plugins={[
+      [uml, umlOptions],
+      chart,
+      tableMergedCell,
+      [codeSyntaxHighlight, { highlighter: Prism }]
+    ]}
+  />
+}
+*/
 const App = () => {
   const [md, setMd] = useState(null);
   useEffect(() => {
     setMd(localStorage.md)
   }, [])
-  // return <>
+  // return <div>
   //   {md && <MdByteV
   //     initialValue={md}
-  //     theme="light"
+  //     theme="dark"
   //   />}
-  // </>
+  // </div>
+  
   return <MdByteE
     getMd={(val) => localStorage.md = val}
   />

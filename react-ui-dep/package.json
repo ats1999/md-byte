@@ -1,0 +1,21 @@
+{
+  "name": "react-ui-dep",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@toast-ui/editor-plugin-chart": "^3.0.1",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.0.0",
+    "@toast-ui/editor-plugin-color-syntax": "^3.0.1",
+    "@toast-ui/editor-plugin-table-merged-cell": "^3.0.0",
+    "@toast-ui/editor-plugin-uml": "^3.0.1",
+    "@toast-ui/react-editor": "^3.0.0",
+    "katex": "^0.13.11",
+    "latex.js": "^0.12.4"
+  },
+  "author": "",
+  "license": "ISC"
+}
