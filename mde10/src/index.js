@@ -35,7 +35,7 @@ const umlOptions = {
 
 
 
-export default function MDE10({ getMd, getTitle, getDescription, getHTML, uploadImage, initialValue }) {
+export default function MDE10({ getMd, getTitle, getDescription, getHTML, uploadImage, initialValue,theme }) {
   const editorRef = useRef(null);
   const [previewStyle, setPreviewStyle] = useState("vertical");
   let previewStyleTab = false;
@@ -71,7 +71,7 @@ export default function MDE10({ getMd, getTitle, getDescription, getHTML, upload
       height="400px"
       initialEditType="markdown"
       useCommandShortcut={true}
-      theme={"dark"}
+      theme={theme}
       widgetRules={widgetRules}
       onChange={mdChange}
 
@@ -118,5 +118,6 @@ export default function MDE10({ getMd, getTitle, getDescription, getHTML, upload
 }
 
 Editor.defaultProps = {
-  initialValue: "# Hi, i am  [Rahul](https://ats1999.github.io/)"
+  initialValue: "# Hi, i am  [Rahul](https://ats1999.github.io/)",
+  theme:"dark"
 }

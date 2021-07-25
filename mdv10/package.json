@@ -13,7 +13,7 @@
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build && cp ~/Desktop/projects/md-byte/mdv10/src/toast.css ~/Desktop/projects/md-byte/mdv10/dist",
+    "prepare": "run-s build && cp ./src/toast.css ./dist",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",

@@ -1,6 +1,6 @@
 {
   "name": "mde10",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Deprected",
   "author": "ats1999",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build && cp ~/Desktop/projects/md-byte/mde10/src/toast.css ~/Desktop/projects/md-byte/mde10/dist",
+    "prepare": "run-s build && cp ./src/toast.css ./dist",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
     "test:lint": "eslint .",
