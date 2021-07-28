@@ -1,6 +1,6 @@
 {
   "name": "mdv10",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "It&#x27;s core has been deprected for security reason",
   "author": "ats1999",
   "license": "MIT",
@@ -31,6 +31,7 @@
     "@toast-ui/editor-plugin-uml": "^3.0.1",
     "@toast-ui/react-editor": "^3.0.1",
     "katex": "^0.13.13",
+    "mermaid": "^8.11.0",
     "latex.js": "^0.12.4"
   },
   "devDependencies": {
@@ -57,5 +58,7 @@
   "files": [
     "dist"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "react-ui-dep":"1.0.2"
+  }
 }

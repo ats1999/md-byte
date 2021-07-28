@@ -33,11 +33,27 @@ const umlOptions = {
   rendererURL: "https://www.plantuml.com/plantuml/svg/"
 };
 
+const chartOptions = {
+  minWidth: 100,
+  maxWidth: 500,
+  minHeight: 100,
+  maxHeight: 300
+};
 
 
-export default function MDE10({ getMd, getTitle, getDescription, getHTML, uploadImage, initialValue,theme }) {
+export default function MDE10({ getMd,
+  getTitle,
+  getDescription,
+  getHTML,
+  uploadImage,
+  initialValue,
+  theme,
+  initialEditType,
+  previewStyleType,
+  height,
+  toolbarItems }) {
   const editorRef = useRef(null);
-  const [previewStyle, setPreviewStyle] = useState("vertical");
+  const [previewStyle, setPreviewStyle] = useState(previewStyleType);
   let previewStyleTab = false;
 
   const toggleDarkMode = () => {
@@ -68,8 +84,8 @@ export default function MDE10({ getMd, getTitle, getDescription, getHTML, upload
       ref={editorRef}
       initialValue={initialValue}
       previewStyle={previewStyle}
-      height="400px"
-      initialEditType="markdown"
+      height={height}
+      initialEditType={initialEditType}
       useCommandShortcut={true}
       theme={theme}
       widgetRules={widgetRules}
@@ -79,13 +95,13 @@ export default function MDE10({ getMd, getTitle, getDescription, getHTML, upload
         addImageBlobHook: (blob, callback) => {
           uploadImage(blob).then(url => callback(url, "Put alt text here...")).catch(err => {
             console.log(err);
-            callback("Try again", "Try again")
+            callback("Server error!", "Directly paste image link.")
           });
           return false;
         }
       }}
 
-      toolbarItems={[
+      toolbarItems={(toolbarItems.length == 0) ? [
         ...items,
         [
           {
@@ -102,22 +118,28 @@ export default function MDE10({ getMd, getTitle, getDescription, getHTML, upload
           }
         ],
         ["scrollSync"]
-      ]}
+      ] : toolbarItems}
 
       customHTMLRenderer={customHTMLRenderer}
 
       plugins={[
         [uml, umlOptions],
         colorSyntax,
-        chart,
+        [chart, chartOptions],
         tableMergedCell,
         [codeSyntaxHighlight, { highlighter: Prism }]
       ]}
+
+    // useDefaultHTMLSanitizer={false}
     />
   );
 }
 
-Editor.defaultProps = {
+MDE10.defaultProps = {
   initialValue: "# Hi, i am  [Rahul](https://ats1999.github.io/)",
-  theme:"dark"
+  theme: "dark",
+  initialEditType: "markdown",
+  previewStyleType: "vertical",
+  height: "400px",
+  toolbarItems: []
 }

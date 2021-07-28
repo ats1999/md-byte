@@ -27,7 +27,12 @@ const umlOptions = {
 };
 
 
-
+const chartOptions = {
+  minWidth: 100,
+  maxWidth: 500,
+  minHeight: 100,
+  maxHeight: 300
+};
 export default function MdByteV({ theme,md }) {
   return (
     <Viewer
@@ -39,7 +44,7 @@ export default function MdByteV({ theme,md }) {
       customHTMLRenderer={customHTMLRenderer}
       plugins={[
         [uml, umlOptions],
-        chart,
+        [chart, chartOptions],
         tableMergedCell,
         [codeSyntaxHighlight, { highlighter: Prism }]
       ]}

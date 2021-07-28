@@ -1,6 +1,7 @@
 import katex from 'katex';
 import 'katex/dist/contrib/mhchem.js';
 import { parse, HtmlGenerator } from 'latex.js';
+import { mermaidAPI } from "mermaid";
 
 /**
  * Get  html repersentation of asci Tex
@@ -68,7 +69,6 @@ const renderer = {
         };
     },
     text(node, context) {
-        console.log(node.literal)
         return {
             type: 'html',
             content: getInlineMath(node.literal)
@@ -111,7 +111,7 @@ const renderer = {
         let html;
         try {
             const generator = new HtmlGenerator({ hyphenate: false });
-            const { body } = parse(node.literal, { generator }).htmlDocument(); 4
+            const { body } = parse(node.literal, { generator }).htmlDocument();
             html = body.innerHTML;
         } catch (e) {
             html = `
@@ -123,6 +123,17 @@ const renderer = {
 
         return [
             { type: 'openTag', tagName: 'div', outerNewLine: true, classNames: ["math-block"] },
+            { type: 'html', content: html },
+            { type: 'closeTag', tagName: 'div', outerNewLine: true }
+        ];
+    },
+    mermaid(node) {
+        let html = "";
+        mermaidAPI.render("mermaid", node.literal, (h) => {
+            html = h;
+        })
+        return [
+            { type: 'openTag', tagName: 'div', outerNewLine: true, classNames: ["mermaid-block"] },
             { type: 'html', content: html },
             { type: 'closeTag', tagName: 'div', outerNewLine: true }
         ];
