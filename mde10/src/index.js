@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 
 import { Editor } from "@toast-ui/react-editor";
 import uml from "@toast-ui/editor-plugin-uml";
@@ -53,8 +53,6 @@ export default function MDE10({ getMd,
   height,
   toolbarItems }) {
   const editorRef = useRef(null);
-  const [previewStyle, setPreviewStyle] = useState(previewStyleType);
-  let previewStyleTab = false;
 
   const toggleDarkMode = () => {
     let el = editorRef.current.getRootElement().getElementsByClassName("toastui-editor-defaultUI")[0];
@@ -64,8 +62,10 @@ export default function MDE10({ getMd,
   };
 
   const togglePreviewStyle = () => {
-    setPreviewStyle(previewStyleTab ? "vertical" : "tab");
-    previewStyleTab = !previewStyleTab;
+    const previewStyle = editorRef.current.getInstance().getCurrentPreviewStyle();
+    if (previewStyle === "vertical")
+      editorRef.current.getInstance().changePreviewStyle("tab")
+    else editorRef.current.getInstance().changePreviewStyle("vertical")
   };
 
   const getEmptyStringIfUndefined = (str) => {
@@ -83,7 +83,7 @@ export default function MDE10({ getMd,
     <Editor
       ref={editorRef}
       initialValue={initialValue}
-      previewStyle={previewStyle}
+      previewStyle={previewStyleType}
       height={height}
       initialEditType={initialEditType}
       useCommandShortcut={true}
