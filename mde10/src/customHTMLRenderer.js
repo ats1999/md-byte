@@ -111,7 +111,7 @@ const renderer = {
         let html;
         try {
             const generator = new HtmlGenerator({ hyphenate: false });
-            const { body } = parse(node.literal, { generator }).htmlDocument(); 
+            const { body } = parse(node.literal, { generator }).htmlDocument();
             html = body.innerHTML;
         } catch (e) {
             html = `
@@ -137,6 +137,31 @@ const renderer = {
             { type: 'html', content: html },
             { type: 'closeTag', tagName: 'div', outerNewLine: true }
         ];
+    },
+
+    htmlBlock: {
+        iframe(node) {
+            return [
+                { type: 'openTag', tagName: 'iframe', outerNewLine: true, attributes: node.attrs },
+                { type: 'html', content: node.childrenHTML },
+                { type: 'closeTag', tagName: 'iframe', outerNewLine: true },
+            ];
+        },
+        details(node) {
+            // return [
+            //     { type: 'openTag', tagName: 'details', outerNewLine: true, attributes: node.attrs },
+            //     { type: 'openTag', tagName: 'summary' },
+            //     { type: "text", content: "This is custom" },
+            //     { type: 'closeTag', tagName: 'summary' },
+            //     { type: "text", content: "This is details" },
+            //     { type: 'closeTag', tagName: 'details' },
+            // ]
+            return [
+                // { type: 'openTag', tagName: 'details', outerNewLine: true, attributes: node.attrs },
+                { type: 'html', content: node.childrenHTML },
+                // { type: 'closeTag', tagName: 'details', outerNewLine: true },
+            ];
+        }
     }
 }
 

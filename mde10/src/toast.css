@@ -20,7 +20,13 @@
 .toastui-editor-contents pre::-webkit-scrollbar {
 	width: 5px;
 }
-
+.toastui-editor-contents table::-webkit-scrollbar {
+  height: 5px;
+}
+.toastui-editor-contents table{
+  display: block;
+  overflow: auto;
+}
 .toastui-editor-contents a{
   text-decoration: none;
 }

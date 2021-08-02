@@ -76,7 +76,7 @@ export default function MDE10({ getMd,
     getMd && getMd(getEmptyStringIfUndefined(editorRef?.current?.getInstance()?.getMarkdown()));
     getTitle && getTitle(getEmptyStringIfUndefined(editorRef?.current?.getRootElement().getElementsByTagName('h1')[0]?.innerText));
     getDescription && getDescription(getEmptyStringIfUndefined(editorRef?.current?.getRootElement().getElementsByTagName('p')[0]?.innerText));
-    getHTML && getHTML(getEmptyStringIfUndefined(editorRef?.current?.getRootElement().getElementsByClassName("toastui-editor-contents")[0].innerHTML));
+    getHTML && getHTML(getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML()));
   }
 
   return (
@@ -90,7 +90,6 @@ export default function MDE10({ getMd,
       theme={theme}
       widgetRules={widgetRules}
       onChange={mdChange}
-
       hooks={{
         addImageBlobHook: (blob, callback) => {
           uploadImage(blob).then(url => callback(url, "Put alt text here...")).catch(err => {
