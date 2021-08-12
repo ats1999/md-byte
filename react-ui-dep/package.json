@@ -1,6 +1,6 @@
 {
   "name": "react-ui-dep",
-  "version": "1.0.2",
+  "version": "1.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "@toast-ui/editor-plugin-color-syntax": "^3.0.1",
     "@toast-ui/editor-plugin-table-merged-cell": "^3.0.0",
     "@toast-ui/editor-plugin-uml": "^3.0.1",
-    "@toast-ui/react-editor": "^3.0.0",
+    "@toast-ui/react-editor": "^3.0.2",
     "katex": "^0.13.11",
     "latex.js": "^0.12.4",
     "mermaid": "^8.11.0"

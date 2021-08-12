@@ -6,16 +6,24 @@ import uml from "@toast-ui/editor-plugin-uml";
 import chart from "@toast-ui/editor-plugin-chart";
 
 import tableMergedCell from "@toast-ui/editor-plugin-table-merged-cell";
+import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
 
 import Prism from "prismjs";
 // https://github.com/PrismJS/prism/tree/gh-pages/components
-import "prismjs/components/prism-java.js";
-import "prismjs/components/prism-python.js";
-import "prismjs/components/prism-jsx.js";
-// import "prismjs/components/prism-cpp.js";
-import "prismjs/components/prism-c.js";
+import "prismjs/components/prism-java.min.js";
+import "prismjs/components/prism-python.min.js";
+import "prismjs/components/prism-jsx.min.js";
+import "prismjs/components/prism-c.min.js";
+import "prismjs/components/prism-cpp.min.js";
 import "prismjs/components/prism-javascript.min.js";
-import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
+import "prismjs/components/prism-json.min.js";
+import "prismjs/components/prism-bash.min.js";
+import "prismjs/components/prism-diff.min.js";
+import "prismjs/components/prism-docker.min.js";
+import "prismjs/components/prism-typescript.min.js";
+import "prismjs/components/prism-tsx.min.js";
+
+
 import widgetRules from "./widgetRules";
 import customHTMLRenderer from "./customHTMLRenderer";
 
