@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef,useEffect } from "react";
 
 import { Editor } from "@toast-ui/react-editor";
 import uml from "@toast-ui/editor-plugin-uml";
@@ -47,6 +47,16 @@ const chartOptions = {
   maxHeight: 300
 };
 
+const makeFullScreenInBrowser=(editorRef)=>{
+  if (!editorRef || !editorRef.current)
+    return;
+
+  const el = editorRef.current.getRootElement();
+
+  if (el.style.height != "100vh")
+    el.style = "height:100vh; width:100vw; position:fixed;z-index:100000;top:0px;left:0px;background-color:white;";
+  else el.style = "height:400px;";
+}
 
 export default function MDE10({ getMd,
   getTitle,
@@ -86,6 +96,19 @@ export default function MDE10({ getMd,
     getHTML && getHTML(getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML()));
   }
 
+  useEffect(()=>{
+    const keyEventLitener=(e)=>{
+      if (e.ctrlKey && e.shiftKey && e.key === "F") {
+        makeFullScreenInBrowser(editorRef);
+      }
+    }
+    
+    document.body.addEventListener("keydown", keyEventLitener)
+
+    return ()=>{
+      document.body.removeEventListener("keydown", keyEventLitener)
+    }
+  },[]);
   return (
     <Editor
       ref={editorRef}
