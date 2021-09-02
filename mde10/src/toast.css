@@ -33,3 +33,12 @@
 .toastui-editor-contents a{
   text-decoration: none;
 }
+
+/* https://github.com/nhn/tui.editor/issues/1767 */
+@media only screen and (max-width: 700px) {
+    .toastui-editor-dropdown-toolbar {
+        max-width: none;
+        flex-wrap: wrap;
+        height: fit-content;
+    }
+}
