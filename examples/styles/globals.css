@@ -1,18 +1,6 @@
 body{
   padding: 10px;
 }
-@import url("@toast-ui/editor/dist/toastui-editor.css");
-@import url("@toast-ui/editor/dist/theme/toastui-editor-dark.css");
-@import url("@toast-ui/editor/dist/toastui-editor-viewer.css");
-@import url("tui-color-picker/dist/tui-color-picker.css");
-@import url("@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css");
-@import url("@toast-ui/chart/dist/toastui-chart.css");
-@import url("@toast-ui/editor-plugin-table-merged-cell/dist/toastui-editor-plugin-table-merged-cell.css");
-@import url("@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css");
-@import url("prismjs/themes/prism-okaidia.css");
-@import url("katex/dist/katex.min.css");
-@import url("mde10/dist/toast.css");
-@import url("mdv10/dist/toast.css");
 
 .toastui-editor-contents{
   text-align: justify !important;
