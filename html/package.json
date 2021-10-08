@@ -1,0 +1,17 @@
+{
+  "name": "mdh10",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "tets"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@toast-ui/toastmark": "0.0.1-alpha.1"
+  }
+}

@@ -87,10 +87,10 @@ export default function MDE10({
       .getInstance()
       .getCurrentPreviewStyle()
     if (previewStyle === 'vertical')
-      editorRef.current.getInstance().changePreviewStyle('tab');
-    else editorRef.current.getInstance().changePreviewStyle('vertical');
+      editorRef.current.getInstance().changePreviewStyle('tab')
+    else editorRef.current.getInstance().changePreviewStyle('vertical')
 
-    editorRef.current.getInstance().changeMode("markdown");
+    editorRef.current.getInstance().changeMode('markdown')
   }
 
   const getEmptyStringIfUndefined = (str) => {
@@ -98,6 +98,7 @@ export default function MDE10({
   }
 
   const mdChange = () => {
+    console.log(editorRef?.current?.getInstance()?.getMarkdown())
     getMd &&
       getMd(
         getEmptyStringIfUndefined(
@@ -147,7 +148,7 @@ export default function MDE10({
       useCommandShortcut={true}
       theme={theme}
       widgetRules={widgetRules}
-      onChange={mdChange}
+      onBlur={mdChange}
       hooks={{
         addImageBlobHook: (blob, callback) => {
           uploadImage(blob)

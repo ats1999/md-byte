@@ -50,7 +50,6 @@ const renderer = {
             .split(" ")
             .join("-")
             .toLocaleLowerCase();
-
         if (context.entering) {
             return {
                 type: "openTag",
