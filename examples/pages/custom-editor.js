@@ -19,7 +19,11 @@ const Mde = dynamic(() => import("mde10"), {
 export default function CustomEditor() {
   return (
     <div>
-      <Mde />
+      <Mde
+        getMd={(md) => {
+          console.log(md.split("\n"));
+        }}
+      />
     </div>
   );
 }
