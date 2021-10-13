@@ -54,3 +54,10 @@
         height: fit-content;
     }
 }
+
+/* https://github.com/nhn/tui.editor/issues/1735 */
+@media only screen and (max-width: 700px) {
+    .toastui-editor-popup {
+        margin-left:0px !important;
+    }
+}
