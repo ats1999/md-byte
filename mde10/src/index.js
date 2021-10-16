@@ -98,7 +98,6 @@ export default function MDE10({
   }
 
   const mdChange = () => {
-    console.log(editorRef?.current?.getInstance()?.getMarkdown())
     getMd &&
       getMd(
         getEmptyStringIfUndefined(
