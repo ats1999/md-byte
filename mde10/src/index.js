@@ -148,6 +148,7 @@ export default function MDE10({
       theme={theme}
       widgetRules={widgetRules}
       onBlur={mdChange}
+      autofocus={false}
       hooks={{
         addImageBlobHook: (blob, callback) => {
           uploadImage(blob)
