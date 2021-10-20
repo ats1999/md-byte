@@ -9,15 +9,7 @@ export default function DefaultEditor() {
   const eRef = useRef(null);
   return (
     <div>
-      <Editor
-        ref={eRef}
-        height="500px"
-        previewStyle="vertical"
-        onChange={(e) => {
-          if (!eRef) return;
-          console.log(eRef.current.retry());
-        }}
-      />
+      <Editor ref={eRef} height="500px" previewStyle="vertical" autofocus={true} />
     </div>
   );
 }
