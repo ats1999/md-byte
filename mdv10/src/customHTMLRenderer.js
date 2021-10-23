@@ -1,7 +1,7 @@
-import katex from 'katex';
-import 'katex/dist/contrib/mhchem.js';
-import { parse, HtmlGenerator } from 'latex.js';
-import { mermaidAPI } from "mermaid";
+import katex from 'katex'
+import 'katex/dist/contrib/mhchem.js'
+import { parse, HtmlGenerator } from 'latex.js'
+import { mermaidAPI } from 'mermaid'
 
 /**
  * Get  html repersentation of asci Tex
@@ -9,11 +9,11 @@ import { mermaidAPI } from "mermaid";
  * @returns {String} str html Tex
  */
 function renderMath(str) {
-    const html = katex.renderToString(str, {
-        throwOnError: false,
-        displayMode: true
-    });
-    return html;
+  const html = katex.renderToString(str, {
+    throwOnError: false,
+    displayMode: true
+  })
+  return html
 }
 
 /**
@@ -22,122 +22,140 @@ function renderMath(str) {
  * @returns {String} str rendered html combined with input
  */
 function getInlineMath(str) {
-    let prevIdx = 0;
-    let nextIdx = -1;
-    while (true) {
-        prevIdx = str.indexOf("$", prevIdx);
-        nextIdx = str.indexOf("$", prevIdx + 1);
-        if (nextIdx == -1 || prevIdx == -1)
-            break;
+  let prevIdx = 0
+  let nextIdx = -1
+  while (true) {
+    prevIdx = str.indexOf('$', prevIdx)
+    nextIdx = str.indexOf('$', prevIdx + 1)
+    if (nextIdx == -1 || prevIdx == -1) break
 
-        str = str.replace(str.substr(prevIdx, nextIdx - prevIdx + 1), renderMath(str.substr(prevIdx + 1, nextIdx - prevIdx - 1)));
-        if (nextIdx !== -1)
-            prevIdx = nextIdx + 1;
-    }
+    str = str.replace(
+      str.substr(prevIdx, nextIdx - prevIdx + 1),
+      renderMath(str.substr(prevIdx + 1, nextIdx - prevIdx - 1))
+    )
+    if (nextIdx !== -1) prevIdx = nextIdx + 1
+  }
 
-    return str;
+  return str
 }
-
 
 const renderer = {
-    heading: (node, context) => {
-        const { level } = node;
-        const tagName = `h${level}`;
-        let id = node.firstChild && node.firstChild.literal ? node.firstChild.literal : ""
-        id = id.replace(/[^\w\s]/gi, " ")
-            .trim()
-            .replace(/ +/g, " ")
-            .split(" ")
-            .join("-")
-            .toLocaleLowerCase();
+  heading: (node, context) => {
+    const { level } = node
+    const tagName = `h${level}`
+    let id =
+      node.firstChild && node.firstChild.literal ? node.firstChild.literal : ''
+    id = id
+      .replace(/[^\w\s]/gi, ' ')
+      .trim()
+      .replace(/ +/g, ' ')
+      .split(' ')
+      .join('-')
+      .toLocaleLowerCase()
 
-        if (context.entering) {
-            return {
-                type: "openTag",
-                tagName,
-                attributes: {
-                    id: id
-                }
-            };
+    if (context.entering) {
+      return {
+        type: 'openTag',
+        tagName,
+        attributes: {
+          id: id
         }
-
-        return {
-            type: "closeTag", tagName,
-            attributes: {
-                id: id
-            }
-        };
-    },
-    text(node, context) {
-        return {
-            type: 'html',
-            content: getInlineMath(node.literal)
-        };
-    },
-    link: (node, context) => {
-        const { origin, entering } = context;
-        const result = origin();
-        if (entering && !result.attributes.href.startsWith("#")) {
-            result.attributes.target = "_blank";
-        }
-        return result;
-    },
-    // with editor
-    // https://codesandbox.io/s/damp-frog-nt1s8?file=/src/App.js
-    // simple react
-    // https://codesandbox.io/s/ecstatic-fast-f0mnb?file=/src/App.js:60-99
-
-    katex(node) {
-        let html;
-        try {
-            html = katex.renderToString(node.literal, {
-                throwOnError: false,
-                displayMode:true
-            });
-        } catch (e) {
-            html = `
-        <pre>
-        <code>${e}</code>
-        </pre>
-        `
-        }
-        return [
-            { type: 'openTag', tagName: 'div', outerNewLine: true, classNames: ["math-block"] },
-            { type: 'html', content: html },
-            { type: 'closeTag', tagName: 'div', outerNewLine: true }
-        ];
-    },
-    latex(node) {
-        let html;
-        try {
-            const generator = new HtmlGenerator({ hyphenate: false });
-            const { body } = parse(node.literal, { generator }).htmlDocument();
-            html = body.innerHTML;
-        } catch (e) {
-            html = `
-        <pre>
-        <code>${e}</code>
-        </pre>
-        `
-        }
-
-        return [
-            { type: 'openTag', tagName: 'div', outerNewLine: true, classNames: ["math-block"] },
-            { type: 'html', content: html },
-            { type: 'closeTag', tagName: 'div', outerNewLine: true }
-        ];
-    },
-    mermaid(node) {
-        let html = "";
-        mermaidAPI.render("mermaid", node.literal, (h) => {
-            html = h;
-        })
-        return [
-            { type: 'openTag', tagName: 'div', outerNewLine: true, classNames: ["mermaid-block"] },
-            { type: 'html', content: html },
-            { type: 'closeTag', tagName: 'div', outerNewLine: true }
-        ];
+      }
     }
+
+    return {
+      type: 'closeTag',
+      tagName,
+      attributes: {
+        id: id
+      }
+    }
+  },
+  text(node, context) {
+    return {
+      type: 'html',
+      content: getInlineMath(node.literal)
+    }
+  },
+  link: (node, context) => {
+    const { origin, entering } = context
+    const result = origin()
+    if (entering && !result.attributes.href.startsWith('#')) {
+      result.attributes.target = '_blank'
+    }
+    return result
+  },
+  // with editor
+  // https://codesandbox.io/s/damp-frog-nt1s8?file=/src/App.js
+  // simple react
+  // https://codesandbox.io/s/ecstatic-fast-f0mnb?file=/src/App.js:60-99
+
+  katex(node) {
+    let html
+    try {
+      html = katex.renderToString(node.literal, {
+        throwOnError: false,
+        displayMode: true
+      })
+    } catch (e) {
+      html = `
+        <pre>
+        <code>${e}</code>
+        </pre>
+        `
+    }
+    return [
+      {
+        type: 'openTag',
+        tagName: 'div',
+        outerNewLine: true,
+        classNames: ['math-block']
+      },
+      { type: 'html', content: html },
+      { type: 'closeTag', tagName: 'div', outerNewLine: true }
+    ]
+  },
+  latex(node) {
+    let html
+    try {
+      const generator = new HtmlGenerator({ hyphenate: false })
+      const { body } = parse(node.literal, { generator }).htmlDocument()
+      html = body.innerHTML
+    } catch (e) {
+      html = `
+        <pre>
+        <code>${e}</code>
+        </pre>
+        `
+    }
+
+    return [
+      {
+        type: 'openTag',
+        tagName: 'div',
+        outerNewLine: true,
+        classNames: ['math-block']
+      },
+      { type: 'html', content: html },
+      { type: 'closeTag', tagName: 'div', outerNewLine: true }
+    ]
+  },
+  mermaid(node) {
+    let html = ''
+    mermaidAPI.render('mermaid', node.literal, (h) => {
+      html = h
+    })
+    return [
+      {
+        type: 'openTag',
+        tagName: 'div',
+        outerNewLine: true,
+        classNames: ['mermaid-block']
+      },
+      { type: 'html', content: html },
+      { type: 'closeTag', tagName: 'div', outerNewLine: true }
+    ]
+  }
 }
 
-export default renderer;
+export default renderer
