@@ -70,3 +70,81 @@
 .katex-display>.katex{
 	text-align:left !important;
 }
+
+/* make some styling for inline math  in heading and text */
+/* h1 */
+.toastui-editor-contents h1 .katex-display {
+  display: inline !important;
+}
+.toastui-editor-contents h1 .katex-display > .katex {
+  display: inline !important;
+}
+.toastui-editor-contents h1 .katex-display > .katex > .katex-html {
+  display: inline !important;
+}
+
+/* h2 */
+.toastui-editor-contents h2 .katex-display {
+  display: inline !important;
+}
+.toastui-editor-contents h2 .katex-display > .katex {
+  display: inline !important;
+}
+.toastui-editor-contents h2 .katex-display > .katex > .katex-html {
+  display: inline !important;
+}
+
+/* h3 */
+.toastui-editor-contents h3 .katex-display {
+  display: inline !important;
+}
+.toastui-editor-contents h3 .katex-display > .katex {
+  display: inline !important;
+}
+.toastui-editor-contents h3 .katex-display > .katex > .katex-html {
+  display: inline !important;
+}
+
+/* h4 */
+.toastui-editor-contents h4 .katex-display {
+  display: inline !important;
+}
+.toastui-editor-contents h4 .katex-display > .katex {
+  display: inline !important;
+}
+.toastui-editor-contents h4 .katex-display > .katex > .katex-html {
+  display: inline !important;
+}
+
+/* h5 */
+.toastui-editor-contents h5 .katex-display {
+  display: inline !important;
+}
+.toastui-editor-contents h5 .katex-display > .katex {
+  display: inline !important;
+}
+.toastui-editor-contents h5 .katex-display > .katex > .katex-html {
+  display: inline !important;
+}
+
+/* h6 */
+.toastui-editor-contents h6 .katex-display {
+  display: inline !important;
+}
+.toastui-editor-contents h6 .katex-display > .katex {
+  display: inline !important;
+}
+.toastui-editor-contents h6 .katex-display > .katex > .katex-html {
+  display: inline !important;
+}
+
+/* p */
+.toastui-editor-contents p .katex-display {
+  display: inline !important;
+}
+.toastui-editor-contents p .katex-display > .katex {
+  display: inline !important;
+}
+.toastui-editor-contents p .katex-display > .katex > .katex-html {
+  display: inline !important;
+}
