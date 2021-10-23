@@ -11,7 +11,7 @@ import { mermaidAPI } from "mermaid";
 function renderMath(str) {
     const html = katex.renderToString(str, {
         throwOnError: false,
-        displayMode: false
+        displayMode: true
     });
     return html;
 }
@@ -92,7 +92,7 @@ const renderer = {
         try {
             html = katex.renderToString(node.literal, {
                 throwOnError: false,
-                // displayMode:true
+                displayMode:true
             });
         } catch (e) {
             html = `

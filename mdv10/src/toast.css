@@ -2,6 +2,18 @@
 .toastui-editor-contents h2 {
   border-bottom: 0px;
 }
+
+.toastui-editor-contents h1{
+  line-height: 35px !important;
+}
+
+.toastui-editor-contents h2{
+  line-height: 27px !important;
+}
+.toastui-editor-contents h3{
+  line-height: 24px !important;
+}
+
 .toastui-editor-contents pre{
   background-color: #232428;
   color: white;
@@ -34,7 +46,6 @@
   text-decoration: none;
 }
 
-
 /* https://github.com/nhn/tui.editor/issues/1767 */
 @media only screen and (max-width: 700px) {
     .toastui-editor-dropdown-toolbar {
@@ -42,4 +53,20 @@
         flex-wrap: wrap;
         height: fit-content;
     }
+}
+
+/* https://github.com/nhn/tui.editor/issues/1735 */
+@media only screen and (max-width: 700px) {
+    .toastui-editor-popup {
+        margin-left:0px !important;
+        left:0px !important;
+    }
+}
+
+/* https://stackoverflow.com/questions/69689762/katex-math-is-not-rendering-perfectly-in-react */
+.katex-display{
+	text-align:left !important;
+}
+.katex-display>.katex{
+	text-align:left !important;
 }

@@ -62,3 +62,11 @@
         left:0px !important;
     }
 }
+
+/* https://stackoverflow.com/questions/69689762/katex-math-is-not-rendering-perfectly-in-react */
+.katex-display{
+	text-align:left !important;
+}
+.katex-display>.katex{
+	text-align:left !important;
+}

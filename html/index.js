@@ -11,7 +11,7 @@ require("katex/dist/contrib/mhchem.js");
 function renderMath(str) {
   const html = katex.renderToString(str, {
     throwOnError: false,
-    displayMode: false,
+    displayMode: true,
   });
   return html;
 }
