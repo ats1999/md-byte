@@ -51,8 +51,8 @@ const renderer = {
       .replace(/ +/g, ' ')
       .split(' ')
       .join('-')
-      .toLocaleLowerCase();
-      
+      .toLocaleLowerCase()
+
     if (context.entering) {
       return {
         type: 'openTag',
@@ -156,9 +156,30 @@ const renderer = {
       { type: 'closeTag', tagName: 'div', outerNewLine: true }
     ]
   },
-
   htmlBlock: {
     iframe(node) {
+      try {
+        // set height and width of the iframe
+        node.attrs.height = 250
+        node.attrs.width = '100%'
+      } catch (e) {}
+
+      try {
+        const allowedHosts = [
+          'www.linkedin.com',
+          'codepen.io',
+          'stackoverflow.com',
+          'codesandbox.io'
+        ]
+        let url = new URL(node?.attrs?.src)
+        if (!allowedHosts.includes(url.hostname)) throw 'invalid origins'
+      } catch (e) {
+        console.log(e)
+        return {
+          type: 'html',
+          content: `<a href="https://www.dsabyte.com/posts/blog/Embedding-iframe-on-dsabyte-online-editor/617512c844214ad4632bbe16" target="_blank">Learn more about embedding content on @dsabyte</a>`
+        }
+      }
       return [
         {
           type: 'openTag',
