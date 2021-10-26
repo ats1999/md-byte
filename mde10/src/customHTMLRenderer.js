@@ -169,7 +169,8 @@ const renderer = {
           'www.linkedin.com',
           'codepen.io',
           'stackoverflow.com',
-          'codesandbox.io'
+          'codesandbox.io',
+          'www.youtube.com'
         ]
         let url = new URL(node?.attrs?.src)
         if (!allowedHosts.includes(url.hostname)) throw 'invalid origins'
