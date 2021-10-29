@@ -3,6 +3,30 @@ import 'katex/dist/contrib/mhchem.js'
 import { parse, HtmlGenerator } from 'latex.js'
 import { mermaidAPI } from 'mermaid'
 
+const inlineRenderRegex = {
+  youtube: /\s*youtube\s*:.+/i
+}
+
+const isYoutube = (str) => inlineRenderRegex.youtube.test(str)
+
+const removeFrameCode = (code, str) => {
+  let regex = new RegExp('\\s*' + code + '\\s*:')
+  return str?.replace(regex, '')?.trim()
+}
+
+const getFrame = (src) => `
+<iframe width="100%" height="400"
+    src="${src}"
+    allowfullscreen="allowfullscreen"
+    mozallowfullscreen="mozallowfullscreen" 
+    msallowfullscreen="msallowfullscreen" 
+    oallowfullscreen="oallowfullscreen" 
+    webkitallowfullscreen="webkitallowfullscreen"
+>
+The fallback
+</iframe>
+`
+
 /**
  * Get  html repersentation of asci Tex
  * @param {String} str asci Tex
@@ -156,42 +180,56 @@ const renderer = {
       { type: 'closeTag', tagName: 'div', outerNewLine: true }
     ]
   },
-  htmlBlock: {
-    iframe(node) {
-      try {
-        // set height and width of the iframe
-        node.attrs.height = 250
-        node.attrs.width = '100%'
-      } catch (e) {}
 
-      try {
-        const allowedHosts = [
-          'www.linkedin.com',
-          'codepen.io',
-          'stackoverflow.com',
-          'codesandbox.io',
-          'www.youtube.com'
-        ]
-        let url = new URL(node?.attrs?.src)
-        if (!allowedHosts.includes(url.hostname)) throw 'invalid origins'
-      } catch (e) {
-        console.log(e)
-        return {
-          type: 'html',
-          content: `<a href="https://www.dsabyte.com/posts/blog/Embedding-iframe-on-dsabyte-online-editor/617512c844214ad4632bbe16" target="_blank">Learn more about embedding content on @dsabyte</a>`
-        }
-      }
+  // iframe custom blocks
+  embed(node) {
+    try {
+      if (!node.literal || !/\s*\w+\s*:.+/gm.test(node.literal))
+        throw 'Invalid args'
+
+      const src = isYoutube(node.literal)
+        ? `https://www.youtube.com/embed/${node.literal?.split(':')[1]?.trim()}`
+        : removeFrameCode(node.literal?.split(':')[0]?.trim(), node.literal)
+
+      const allowedHosts = [
+        'www.linkedin.com',
+        'codepen.io',
+        'stackoverflow.com',
+        'codesandbox.io',
+        'www.youtube.com'
+      ]
+
+      if (!allowedHosts.includes(new URL(src).hostname))
+        throw 'Invalid host name'
+
+      const frame = getFrame(src)
+      console.log(src,frame)
       return [
         {
           type: 'openTag',
-          tagName: 'iframe',
-          outerNewLine: true,
-          attributes: node.attrs
+          tagName: 'div',
+          outerNewLine: true
         },
-        { type: 'html', content: node.childrenHTML },
-        { type: 'closeTag', tagName: 'iframe', outerNewLine: true }
+        { type: 'html', content: frame },
+        { type: 'closeTag', tagName: 'div', outerNewLine: true }
       ]
-    },
+    } catch (e) {
+      console.log(e)
+      return [
+        {
+          type: 'openTag',
+          tagName: 'div',
+          outerNewLine: true
+        },
+        {
+          type: 'html',
+          content: `<a href="https://www.dsabyte.com/posts/blog/Embedding-iframe-on-dsabyte-online-editor/617512c844214ad4632bbe16" target="_blank">Learn more about embedding content on @dsabyte</a>`
+        },
+        { type: 'closeTag', tagName: 'div', outerNewLine: true }
+      ]
+    }
+  },
+  htmlBlock: {
     details(node) {
       // return [
       //     { type: 'openTag', tagName: 'details', outerNewLine: true, attributes: node.attrs },
