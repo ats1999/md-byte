@@ -58,6 +58,33 @@ const makeFullScreenInBrowser = (editorRef) => {
   else el.style = 'height:400px;'
 }
 
+const insertKatex = (editorRef) => {
+  if (!editorRef || !editorRef.current) return
+  editorRef.current.getInstance().insertText(`\n$$katex\n\n$$\n`)
+}
+
+const insertUML = (editorRef) => {
+  if (!editorRef || !editorRef.current) return
+  editorRef.current.getInstance().insertText(`\n$$uml\n\n$$\n`)
+}
+
+const insertInlineMath = (editorRef) => {
+  if (!editorRef || !editorRef.current) return
+
+  // get the selection range
+  const [start, end] = editorRef.current.getInstance().getSelection()
+
+  // get the selected text
+  const selectedText = editorRef.current
+    .getInstance()
+    .getSelectedText(start, end)
+
+  // replace the selection with the inline math text
+  editorRef.current
+    .getInstance()
+    .replaceSelection(`$${selectedText}$`, start, end)
+}
+
 export default function MDE10({
   getMd,
   getTitle,
@@ -98,36 +125,44 @@ export default function MDE10({
   }
 
   const mdChange = () => {
-    getMd &&
-      getMd(
-        getEmptyStringIfUndefined(
-          editorRef?.current?.getInstance()?.getMarkdown()
-        )
+    getMd(
+      getEmptyStringIfUndefined(
+        editorRef?.current?.getInstance()?.getMarkdown()
       )
-    getTitle &&
-      getTitle(
-        getEmptyStringIfUndefined(
-          editorRef?.current?.getRootElement().getElementsByTagName('h1')[0]
-            ?.innerText
-        )
+    )
+    getTitle(
+      getEmptyStringIfUndefined(
+        editorRef?.current?.getRootElement().getElementsByTagName('h1')[0]
+          ?.innerText
       )
-    getDescription &&
-      getDescription(
-        getEmptyStringIfUndefined(
-          editorRef?.current?.getRootElement().getElementsByTagName('p')[0]
-            ?.innerText
-        )
+    )
+    getDescription(
+      getEmptyStringIfUndefined(
+        editorRef?.current?.getRootElement().getElementsByTagName('p')[0]
+          ?.innerText
       )
-    getHTML &&
-      getHTML(
-        getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML())
-      )
+    )
+
+    getHTML(
+      getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML())
+    )
   }
 
   useEffect(() => {
     const keyEventLitener = (e) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'F') {
         makeFullScreenInBrowser(editorRef)
+      }
+
+      if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+        insertKatex(editorRef)
+      }
+
+      if (e.ctrlKey && e.shiftKey && e.key === 'U') {
+        insertUML(editorRef)
+      }
+      if (e.altKey && e.key === 'm') {
+        insertInlineMath(editorRef)
       }
     }
 
@@ -137,6 +172,7 @@ export default function MDE10({
       document.body.removeEventListener('keydown', keyEventLitener)
     }
   }, [])
+
   return (
     <Editor
       ref={editorRef}
@@ -148,8 +184,8 @@ export default function MDE10({
       theme={theme}
       widgetRules={widgetRules}
       onBlur={mdChange}
+      // onKeyPress={()=>console.log("called..")}
       autofocus={false}
-      autoFocus={false}
       hooks={{
         addImageBlobHook: (blob, callback) => {
           uploadImage(blob)
@@ -203,5 +239,11 @@ MDE10.defaultProps = {
   initialEditType: 'markdown',
   previewStyleType: 'vertical',
   height: '400px',
-  toolbarItems: []
+  toolbarItems: [],
+  getMd: () => {},
+  getTitle: () => {},
+  getDescription: () => {},
+  getHTML: (html) => {
+    console.log(html)
+  }
 }

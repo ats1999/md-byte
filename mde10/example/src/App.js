@@ -23,7 +23,7 @@ const App = () => {
   // return <div className="toastui-editor-contents" dangerouslySetInnerHTML={{__html:localStorage.html}}></div>
   
   return <MDE
-    getHTML={(html)=>localStorage.html = html}
+    getHTML={(html)=>console.log(html)}
     theme='light'
   />
 }
