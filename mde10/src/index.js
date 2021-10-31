@@ -243,7 +243,5 @@ MDE10.defaultProps = {
   getMd: () => {},
   getTitle: () => {},
   getDescription: () => {},
-  getHTML: (html) => {
-    console.log(html)
-  }
+  getHTML: (html) => {}
 }
