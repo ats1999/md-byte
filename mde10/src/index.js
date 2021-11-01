@@ -125,27 +125,30 @@ export default function MDE10({
   }
 
   const mdChange = () => {
-    getMd(
-      getEmptyStringIfUndefined(
-        editorRef?.current?.getInstance()?.getMarkdown()
+    getMd &&
+      getMd(
+        getEmptyStringIfUndefined(
+          editorRef?.current?.getInstance()?.getMarkdown()
+        )
       )
-    )
-    getTitle(
-      getEmptyStringIfUndefined(
-        editorRef?.current?.getRootElement().getElementsByTagName('h1')[0]
-          ?.innerText
+    getTitle &&
+      getTitle(
+        getEmptyStringIfUndefined(
+          editorRef?.current?.getRootElement().getElementsByTagName('h1')[0]
+            ?.innerText
+        )
       )
-    )
-    getDescription(
-      getEmptyStringIfUndefined(
-        editorRef?.current?.getRootElement().getElementsByTagName('p')[0]
-          ?.innerText
+    getDescription &&
+      getDescription(
+        getEmptyStringIfUndefined(
+          editorRef?.current?.getRootElement().getElementsByTagName('p')[0]
+            ?.innerText
+        )
       )
-    )
-
-    getHTML(
-      getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML())
-    )
+    getHTML &&
+      getHTML(
+        getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML())
+      )
   }
 
   useEffect(() => {
@@ -238,9 +241,5 @@ MDE10.defaultProps = {
   initialEditType: 'markdown',
   previewStyleType: 'vertical',
   height: '400px',
-  toolbarItems: [],
-  getMd: () => {},
-  getTitle: () => {},
-  getDescription: () => {},
-  getHTML: (html) => {}
+  toolbarItems: []
 }
