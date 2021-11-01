@@ -147,7 +147,11 @@ export default function MDE10({
       )
     getHTML &&
       getHTML(
-        getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML())
+        getEmptyStringIfUndefined(
+          editorRef?.current
+            ?.getRootElement()
+            .getElementsByClassName('toastui-editor-contents')[0].innerHTML
+        )
       )
   }
 
