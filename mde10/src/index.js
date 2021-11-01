@@ -184,7 +184,6 @@ export default function MDE10({
       theme={theme}
       widgetRules={widgetRules}
       onBlur={mdChange}
-      // onKeyPress={()=>console.log("called..")}
       autofocus={false}
       hooks={{
         addImageBlobHook: (blob, callback) => {
