@@ -1,8 +1,9 @@
 import katex from 'katex'
 import 'katex/dist/contrib/mhchem.js'
 import { parse, HtmlGenerator } from 'latex.js'
-import { mermaidAPI } from 'mermaid'
+import mermaid from 'mermaid'
 
+const mermaidAPI = mermaid.mermaidAPI
 const inlineRenderRegex = {
   youtube: /\s*youtube\s*:.+/i
 }
@@ -203,7 +204,7 @@ const renderer = {
         throw 'Invalid host name'
 
       const frame = getFrame(src)
-      console.log(src,frame)
+      console.log(src, frame)
       return [
         {
           type: 'openTag',

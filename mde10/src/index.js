@@ -87,9 +87,8 @@ const insertInlineMath = (editorRef) => {
 
 export default function MDE10({
   getMd,
-  getTitle,
-  getDescription,
   getHTML,
+  getEditorRef,
   uploadImage,
   initialValue,
   theme,
@@ -131,27 +130,10 @@ export default function MDE10({
           editorRef?.current?.getInstance()?.getMarkdown()
         )
       )
-    getTitle &&
-      getTitle(
-        getEmptyStringIfUndefined(
-          editorRef?.current?.getRootElement().getElementsByTagName('h1')[0]
-            ?.innerText
-        )
-      )
-    getDescription &&
-      getDescription(
-        getEmptyStringIfUndefined(
-          editorRef?.current?.getRootElement().getElementsByTagName('p')[0]
-            ?.innerText
-        )
-      )
+
     getHTML &&
       getHTML(
-        getEmptyStringIfUndefined(
-          editorRef?.current
-            ?.getRootElement()
-            .getElementsByClassName('toastui-editor-contents')[0].innerHTML
-        )
+        getEmptyStringIfUndefined(editorRef?.current?.getInstance().getHTML())
       )
   }
 
@@ -179,6 +161,10 @@ export default function MDE10({
       document.body.removeEventListener('keydown', keyEventLitener)
     }
   }, [])
+
+  useEffect(() => {
+    getEditorRef(editorRef)
+  }, [editorRef])
 
   return (
     <Editor
@@ -245,5 +231,6 @@ MDE10.defaultProps = {
   initialEditType: 'markdown',
   previewStyleType: 'vertical',
   height: '400px',
-  toolbarItems: []
+  toolbarItems: [],
+  getEditorRef: () => {}
 }
