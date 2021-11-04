@@ -20,13 +20,18 @@ const App = () => {
   const [md, setMd] = useState('# Rahul')
   const [editorRef, setEditorRef] = useState(null)
   // return <div className="toastui-editor-contents" dangerouslySetInnerHTML={{__html:localStorage.html}}></div>
-  console.log(editorRef?.current?.getInstance().setMarkdown(""))
+  // editorRef?.current?.getInstance().setMarkdown("")
   return (
-    <MDE
-      getHTML={(html) => console.log(html, '[][]\n\n')}
-      getEditorRef={setEditorRef}
-      theme='light'
-    />
+    <div>
+      <button onClick={() => editorRef?.current?.getInstance().reset('')}>
+        Click to clear markdown
+      </button>
+      <MDE
+        getHTML={(html) => console.log(html, '[][]\n\n')}
+        getEditorRef={setEditorRef}
+        theme='light'
+      />
+    </div>
   )
 }
 
