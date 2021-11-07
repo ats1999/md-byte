@@ -18,13 +18,18 @@
   background-color: #232428;
   color: white;
 }
+
 .toastui-editor-contents, div[contenteditable]{
   font-size: 17px;
 }
+
 /* add opacity in dark mode */
+/*
 .toastui-editor-dark .toastui-editor-contents,.toastui-editor-dark div[contenteditable]{
   opacity: 70%;
 }
+*/
+
 .toastui-editor-contents pre{
   overflow: auto;
 }
@@ -35,13 +40,18 @@
 .toastui-editor-contents pre::-webkit-scrollbar {
 	width: 5px;
 }
+
+/*
 .toastui-editor-contents table::-webkit-scrollbar {
   height: 5px;
 }
+*/
+
 .toastui-editor-contents table{
   display: block;
   overflow: auto;
 }
+
 .toastui-editor-contents a{
   text-decoration: none;
 }

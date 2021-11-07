@@ -197,14 +197,15 @@ const renderer = {
         'codepen.io',
         'stackoverflow.com',
         'codesandbox.io',
-        'www.youtube.com'
+        'www.youtube.com',
+        'replit.com'
       ]
 
       if (!allowedHosts.includes(new URL(src).hostname))
         throw 'Invalid host name'
 
       const frame = getFrame(src)
-      console.log(src, frame)
+      
       return [
         {
           type: 'openTag',

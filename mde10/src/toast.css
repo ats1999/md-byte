@@ -1,74 +1,113 @@
+/* font faimily */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+.toastui-editor-contents{
+  font-family: 'Roboto', sans-serif;
+}
+
+/* 
+- increase font size of the first heading
+*/
+/* .toastui-editor-contents > h1:first-of-type {
+  font-size: 40px !important;
+  line-height: 50px !important;
+}
+.toastui-editor-contents h2 {
+  font-size: 30px !important;
+  font-weight: 300;
+} */
+
+/* remove margins from heading */
+.toastui-editor-contents h1,
+.toastui-editor-contents h2,
+.toastui-editor-contents h3,
+.toastui-editor-contents h4,
+.toastui-editor-contents h5,
+.toastui-editor-contents h6 {
+  margin: 0px !important;
+  margin-top: 20px !important;
+  margin-bottom: 2px !important;
+  font-weight: 500;
+}
+.toastui-editor-contents p {
+  margin: 0px !important;
+  font-weight: 400;
+}
+/* remove broders from top level headings */
 .toastui-editor-contents h1,
 .toastui-editor-contents h2 {
   border-bottom: 0px;
 }
 
-.toastui-editor-contents h1{
+/* line heights to the headings */
+.toastui-editor-contents h2 {
   line-height: 35px !important;
 }
-
-.toastui-editor-contents h2{
-  line-height: 27px !important;
-}
-.toastui-editor-contents h3{
+.toastui-editor-contents h3 {
   line-height: 24px !important;
 }
+.toastui-editor-contents h4 {
+  line-height: 23px !important;
+}
 
-.toastui-editor-contents pre{
+.toastui-editor-contents pre {
   background-color: #232428;
   color: white;
 }
-.toastui-editor-contents, div[contenteditable]{
+.toastui-editor-contents,
+div[contenteditable] {
   font-size: 17px;
 }
+
 /* add opacity in dark mode */
-.toastui-editor-dark .toastui-editor-contents,.toastui-editor-dark div[contenteditable]{
-  opacity: 70%;
+.toastui-editor-dark .toastui-editor-contents,
+.toastui-editor-dark div[contenteditable] {
+  opacity: 90%;
 }
-.toastui-editor-contents pre{
+
+.toastui-editor-contents pre {
   overflow: auto;
 }
-.toastui-editor-contents pre code{
+.toastui-editor-contents pre code {
   white-space: pre;
 }
 
 .toastui-editor-contents pre::-webkit-scrollbar {
-	width: 5px;
+  width: 5px;
 }
 .toastui-editor-contents table::-webkit-scrollbar {
   height: 5px;
 }
-.toastui-editor-contents table{
+.toastui-editor-contents table {
   display: block;
   overflow: auto;
 }
-.toastui-editor-contents a{
+.toastui-editor-contents a {
   text-decoration: none;
 }
 
 /* https://github.com/nhn/tui.editor/issues/1767 */
 @media only screen and (max-width: 700px) {
-    .toastui-editor-dropdown-toolbar {
-        max-width: none;
-        flex-wrap: wrap;
-        height: fit-content;
-    }
+  .toastui-editor-dropdown-toolbar {
+    max-width: none;
+    flex-wrap: wrap;
+    height: fit-content;
+  }
 }
 
 /* https://github.com/nhn/tui.editor/issues/1735 */
 @media only screen and (max-width: 700px) {
-    .toastui-editor-popup {
-        margin-left:0px !important;
-        left:0px !important;
-    }
+  .toastui-editor-popup {
+    margin-left: 0px !important;
+    left: 0px !important;
+  }
 }
 
 /* https://stackoverflow.com/questions/69689762/katex-math-is-not-rendering-perfectly-in-react */
-.katex-display{
-	text-align:left !important;
+.katex-display {
+  text-align: left !important;
 }
-.katex-display>.katex{
-	text-align:left !important;
+.katex-display > .katex {
+  text-align: left !important;
 }
 
 /* make some styling for inline math  in heading and text */
