@@ -30,7 +30,8 @@ import {
   items,
   toggleFullScreen,
   previewStyleButton,
-  darkMode
+  darkMode,
+  tocMake
 } from './toolbarItems'
 
 import widgetRules from './widgetRules'
@@ -214,6 +215,10 @@ export default function MDE10({
                 {
                   el: previewStyleButton(togglePreviewStyle),
                   tooltip: 'Preview Mode'
+                },
+                {
+                  el: tocMake(editorRef),
+                  tooltip: 'Make TOC'
                 },
                 {
                   el: darkMode(toggleDarkMode),

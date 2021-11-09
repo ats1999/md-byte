@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@toast-ui/toastmark": "0.0.1-alpha.1",
-    "mde10": "^2.0.1",
+    "markdown-toc": "^1.2.0",
+    "mde10": "^20.0.11",
     "mdh10": "^2.0.0",
     "mdv10": "^2.0.0",
     "next": "11.1.2",

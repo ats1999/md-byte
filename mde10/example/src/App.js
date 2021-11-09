@@ -16,21 +16,25 @@ import 'prismjs/themes/prism-okaidia.css'
 import 'katex/dist/katex.min.css'
 import 'mde10/dist/toast.css'
 
+import toc from 'md-to-toc'
+
 const App = () => {
   const [md, setMd] = useState('# Rahul')
   const [editorRef, setEditorRef] = useState(null)
-  // return <div className="toastui-editor-contents" dangerouslySetInnerHTML={{__html:localStorage.html}}></div>
-  // editorRef?.current?.getInstance().setMarkdown("")
   return (
     <div>
-      <button onClick={() => editorRef?.current?.getInstance().reset('')}>
-        Click to clear markdown
-      </button>
       <MDE
         getHTML={(html) => console.log(html, '[][]\n\n')}
         getEditorRef={setEditorRef}
         theme='light'
       />
+      <button
+        onClick={() => {
+          console.log(toc('# Rahul', { slugify: (anchor) => anchor + '7008' }))
+        }}
+      >
+        toc
+      </button>
     </div>
   )
 }

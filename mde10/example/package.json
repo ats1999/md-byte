@@ -10,6 +10,9 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
+    "copy-to-clipboard": "^3.3.1",
+    "markdown-toc": "^1.2.0",
+    "md-to-toc": "0.0.5",
     "mde10": "file:..",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",

@@ -11,7 +11,6 @@ import "prismjs/themes/prism-okaidia.css";
 import "katex/dist/katex.min.css";
 import "mde10/dist/toast.css";
 import "mdv10/dist/toast.css";
-
 const Mde = dynamic(() => import("mde10"), {
   ssr: false,
   loading: () => <h1>Loading the editor...</h1>,
@@ -19,7 +18,9 @@ const Mde = dynamic(() => import("mde10"), {
 export default function CustomEditor() {
   return (
     <div>
-      <Mde getHTML={(html) => console.log('\n Outer HTML\n',html,'\n=======================\n')} />
+      <Mde
+      // getHTML={(html) => console.log('\n Outer HTML\n',html,'\n=======================\n')}
+      />
     </div>
   );
 }
