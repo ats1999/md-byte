@@ -138,25 +138,31 @@ export default function MDE10({
 
     getHTML &&
       getHTML(
-        getEmptyStringIfUndefined(editorRef?.current?.getRootElement().getElementsByClassName("toastui-editor-contents")[0].innerHTML)
+        getEmptyStringIfUndefined(
+          editorRef?.current
+            ?.getRootElement()
+            .getElementsByClassName('toastui-editor-contents')[0].innerHTML
+        )
       )
+  }
+
+  const onKeydown = (_, e) => {
+    if (e.altKey && e.key === 'm') {
+      insertInlineMath(editorRef)
+    }
+    if (e.ctrlKey && e.shiftKey && e.key === 'K') {
+      insertKatex(editorRef)
+    }
+
+    if (e.ctrlKey && e.shiftKey && e.key === 'U') {
+      insertUML(editorRef)
+    }
   }
 
   useEffect(() => {
     const keyEventLitener = (e) => {
       if (e.ctrlKey && e.shiftKey && e.key === 'F') {
         makeFullScreenInBrowser(editorRef)
-      }
-
-      if (e.ctrlKey && e.shiftKey && e.key === 'K') {
-        insertKatex(editorRef)
-      }
-
-      if (e.ctrlKey && e.shiftKey && e.key === 'U') {
-        insertUML(editorRef)
-      }
-      if (e.altKey && e.key === 'm') {
-        insertInlineMath(editorRef)
       }
     }
 
@@ -182,7 +188,9 @@ export default function MDE10({
       theme={theme}
       widgetRules={widgetRules}
       onBlur={mdChange}
+      onKeydown={onKeydown}
       autofocus={false}
+      hideModeSwitch={true}
       hooks={{
         addImageBlobHook: (blob, callback) => {
           uploadImage(blob)

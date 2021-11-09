@@ -8,11 +8,10 @@ const Editor = dynamic(
 export default function DefaultEditor() {
   const eRef = useRef(null);
 
-
-  const handleChange=()=>{
-    if(!eRef) return;
+  const handleChange = () => {
+    if (!eRef) return;
     console.log(eRef.current.retry());
-  }
+  };
   return (
     <div>
       <Editor
@@ -21,14 +20,7 @@ export default function DefaultEditor() {
         previewStyle="vertical"
         autofocus={true}
         onChange={handleChange}
-        customHTMLRenderer={{
-          text(node, context) {
-            return {
-              type: "html",
-              content: `<b>${node.literal?.replace("rahul","kumar")}</b>`
-            };
-          },
-        }}
+        onKeydown={() => console.log("pressed..")}
       />
     </div>
   );

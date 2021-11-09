@@ -247,6 +247,11 @@ const renderer = {
         // { type: 'closeTag', tagName: 'details', outerNewLine: true },
       ]
     }
+  },
+  htmlInline:{
+    b(node){
+      console.log(node)
+    }
   }
 }
 
