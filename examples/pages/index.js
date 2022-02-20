@@ -21,6 +21,11 @@ export default function Home() {
             custom editor
           </Link>
         </li>
+        <li>
+          <Link href="/tiny-default">
+            Tiny Default
+          </Link>
+        </li>
       </ol>
     </div>
   )

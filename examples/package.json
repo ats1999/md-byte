@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^3.13.0",
     "@toast-ui/toastmark": "0.0.1-alpha.1",
     "markdown-toc": "^1.2.0",
     "mde10": "^20.0.11",
